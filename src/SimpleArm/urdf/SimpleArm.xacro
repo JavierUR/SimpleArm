@@ -1,8 +1,9 @@
-<robot name="SimpleArm">
+<?xml version="1.0"?>
+<robot name="SimpleArm"  xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:property name="altura_base" value="0.1"/>
   <xacro:property name="largo" value="0.5"/>
   <xacro:property name="ancho" value="0.1"/>
-  <xacro:property name="masa" value="2"/>
+  <xacro:property name="masa" value="2.0"/>
 
   <link name="link0">
     <visual>
@@ -17,7 +18,7 @@
       </geometry>
       <origin xyz="0 0 0" rpy="0 0 0" />
     </colission>
-    <xacro:default_inertial_mass="1000"/>
+    <xacro:default_inertial mass="1000"/>
   </link>
   <link name="link1">
     <visual>
@@ -32,7 +33,7 @@
       </geometry>
       <origin xyz="0 0 0" rpy="0 0 0" />
     </colission>
-    <xacro:default_inertial_mass="${masa}"/>
+    <xacro:default_inertial mass="${masa}"/>
   </link>
   <link name="link2">
     <visual>
@@ -47,7 +48,7 @@
       </geometry>
       <origin xyz="0 0 0" rpy="0 0 0" />
     </colission>
-    <xacro:default_inertial_mass="${masa}"/>
+    <xacro:default_inertial mass="${masa}"/>
   </link>
   <link name="link3">
     <visual>
@@ -62,7 +63,7 @@
       </geometry>
       <origin xyz="0 0 0" rpy="0 0 0" />
     </colission>
-    <xacro:default_inertial_mass="${masa}"/>
+    <xacro:default_inertial mass="${masa}"/>
   </link>
   <link name="link4">
     <visual>
@@ -77,7 +78,7 @@
       </geometry>
       <origin xyz="0 0 0" rpy="0 0 0" />
     </colission>
-    <xacro:default_inertial_mass="${masa}"/>
+    <xacro:default_inertial mass="${masa}"/>
   </link>
   <joint name="joint1" type="continuous">
     <parent link="link0"/>
