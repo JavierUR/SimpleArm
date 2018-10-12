@@ -1,0 +1,107 @@
+<robot name="SimpleArm">
+  <xacro:property name="altura_base" value="0.1"/>
+  <xacro:property name="largo" value="0.5"/>
+  <xacro:property name="ancho" value="0.1"/>
+  <xacro:property name="masa" value="2"/>
+
+  <link name="link0">
+    <visual>
+      <geometry>
+        <box size="1 1 ${altura_base}"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </visual>
+    <colission>
+      <geometry>
+        <box size="1 1 ${altura_base}"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </colission>
+    <xacro:default_inertial_mass="1000"/>
+  </link>
+  <link name="link1">
+    <visual>
+      <geometry>
+        <cylinder radius="${ancho}" length="${largo}"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </visual>
+    <colission>
+      <geometry>
+         <cylinder radius="${ancho}" length="${largo}"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </colission>
+    <xacro:default_inertial_mass="${masa}"/>
+  </link>
+  <link name="link2">
+    <visual>
+      <geometry>
+        <cylinder radius="${ancho}" length="${largo}"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </visual>
+    <colission>
+      <geometry>
+         <cylinder radius="${ancho}" length="${largo}"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </colission>
+    <xacro:default_inertial_mass="${masa}"/>
+  </link>
+  <link name="link3">
+    <visual>
+      <geometry>
+        <cylinder radius="${ancho}" length="${largo}"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </visual>
+    <colission>
+      <geometry>
+         <cylinder radius="${ancho}" length="${largo}"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </colission>
+    <xacro:default_inertial_mass="${masa}"/>
+  </link>
+  <link name="link4">
+    <visual>
+      <geometry>
+        <cylinder radius="${ancho}" length="${largo}"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </visual>
+    <colission>
+      <geometry>
+         <cylinder radius="${ancho}" length="${largo}"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </colission>
+    <xacro:default_inertial_mass="${masa}"/>
+  </link>
+  <joint name="joint1" type="continuous">
+    <parent link="link0"/>
+    <child link="link1"/>
+    <origin xyz="0 0 ${altura_base}" rpy="0 0 0" />
+  </joint>
+
+  <joint name="joint2" type="continuous">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="0 0 ${largo+altura_base}" rpy="0 0 0" />
+  </joint>
+
+  <joint name="joint3" type="continuous">
+    <parent link="link2"/>
+    <child link="link3"/>
+    <origin xyz="0 0 ${largo*2+altura_base}" rpy="0 0 0" />
+  </joint>
+
+  <joint name="joint4" type="continuous">
+    <parent link="link3"/>
+    <child link="link4"/>
+    <origin xyz="0 0 ${largo*3+altura_base}" rpy="0 0 0" />
+  </joint>
+</robot>
+
+
