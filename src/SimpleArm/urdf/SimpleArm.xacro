@@ -5,6 +5,13 @@
   <xacro:property name="ancho" value="0.1"/>
   <xacro:property name="masa" value="2.0"/>
 
+<xacro:macro name="default_inertial" params="mass">
+	<inertial>
+		<mass value="${mass}"/>
+		<inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+	</inertial>
+</xacro:macro>
+
   <link name="link0">
     <visual>
       <geometry>
@@ -20,6 +27,7 @@
     </colission>
     <xacro:default_inertial mass="1000"/>
   </link>
+
   <link name="link1">
     <visual>
       <geometry>
@@ -35,6 +43,7 @@
     </colission>
     <xacro:default_inertial mass="${masa}"/>
   </link>
+
   <link name="link2">
     <visual>
       <geometry>
@@ -50,6 +59,7 @@
     </colission>
     <xacro:default_inertial mass="${masa}"/>
   </link>
+
   <link name="link3">
     <visual>
       <geometry>
@@ -65,6 +75,7 @@
     </colission>
     <xacro:default_inertial mass="${masa}"/>
   </link>
+
   <link name="link4">
     <visual>
       <geometry>
@@ -80,6 +91,8 @@
     </colission>
     <xacro:default_inertial mass="${masa}"/>
   </link>
+
+
   <joint name="joint1" type="continuous">
     <parent link="link0"/>
     <child link="link1"/>
