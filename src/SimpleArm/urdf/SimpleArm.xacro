@@ -5,27 +5,31 @@
   <xacro:property name="ancho" value="0.1"/>
   <xacro:property name="masa" value="2.0"/>
 
-<xacro:macro name="default_inertial" params="mass">
-	<inertial>
-		<mass value="${mass}"/>
-		<inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
-	</inertial>
+<xacro:macro name="default_inertial" params="mass altoL">
+  <inertial>
+    <origin xyz="0 0 ${altoL/2}" rpy="0 0 0"/>
+    <mass value="${mass}"/>
+    <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+  </inertial>
 </xacro:macro>
+
 
   <link name="link0">
     <visual>
+      <origin xyz="0 0 ${altura_base/2}" rpy="0 0 0"/>
       <geometry>
         <box size="1 1 ${altura_base}"/>
       </geometry>
-      <origin xyz="0 0 0" rpy="0 0 0" />
     </visual>
-    <colission>
+
+    <collision>
+      <origin xyz="0 0 ${altura_base/2}" rpy="0 0 0"/>
       <geometry>
         <box size="1 1 ${altura_base}"/>
       </geometry>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-    </colission>
-    <xacro:default_inertial mass="1000"/>
+    </collision>
+
+   <xacro:default_inertial mass="1000" altoL="${altura_base}"/>
   </link>
 
   <link name="link1">
@@ -33,15 +37,15 @@
       <geometry>
         <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
     </visual>
-    <colission>
+    <collission>
       <geometry>
          <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-    </colission>
-    <xacro:default_inertial mass="${masa}"/>
+      <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
+    </collission>
+    <xacro:default_inertial mass="${masa}" altoL="${largo}"/>
   </link>
 
   <link name="link2">
@@ -49,15 +53,15 @@
       <geometry>
         <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
     </visual>
     <colission>
       <geometry>
          <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
     </colission>
-    <xacro:default_inertial mass="${masa}"/>
+    <xacro:default_inertial mass="${masa}" altoL="${largo}"/>
   </link>
 
   <link name="link3">
@@ -65,15 +69,15 @@
       <geometry>
         <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
     </visual>
     <colission>
       <geometry>
          <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
     </colission>
-    <xacro:default_inertial mass="${masa}"/>
+    <xacro:default_inertial mass="${masa}" altoL="${largo}"/>
   </link>
 
   <link name="link4">
@@ -81,40 +85,44 @@
       <geometry>
         <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
     </visual>
     <colission>
       <geometry>
          <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
     </colission>
-    <xacro:default_inertial mass="${masa}"/>
+    <xacro:default_inertial mass="${masa}" altoL="${largo}"/>
   </link>
-
+ 
 
   <joint name="joint1" type="continuous">
     <parent link="link0"/>
     <child link="link1"/>
     <origin xyz="0 0 ${altura_base}" rpy="0 0 0" />
+    <axis xyz="0 0 1"/>
   </joint>
 
   <joint name="joint2" type="continuous">
     <parent link="link1"/>
     <child link="link2"/>
-    <origin xyz="0 0 ${largo+altura_base}" rpy="0 0 0" />
+    <origin xyz="0 0 ${largo}" rpy="0 0 0" />
+    <axis xyz="0 1 0"/>
   </joint>
 
   <joint name="joint3" type="continuous">
     <parent link="link2"/>
     <child link="link3"/>
-    <origin xyz="0 0 ${largo*2+altura_base}" rpy="0 0 0" />
+    <origin xyz="0 0 ${largo}" rpy="0 0 0" />
+    <axis xyz="0 1 0"/>
   </joint>
 
   <joint name="joint4" type="continuous">
     <parent link="link3"/>
     <child link="link4"/>
-    <origin xyz="0 0 ${largo*3+altura_base}" rpy="0 0 0" />
+    <origin xyz="0 0 ${largo}" rpy="0 0 0" />
+    <axis xyz="0 1 0"/>
   </joint>
 </robot>
 
