@@ -5,14 +5,18 @@
   <xacro:property name="ancho" value="0.1"/>
   <xacro:property name="masa" value="2.0"/>
 
-<xacro:macro name="default_inertial" params="mass altoL">
-  <inertial>
-    <origin xyz="0 0 ${altoL/2}" rpy="0 0 0"/>
-    <mass value="${mass}"/>
-    <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
-  </inertial>
-</xacro:macro>
+  <xacro:macro name="default_inertial" params="mass altoL">
+    <inertial>
+      <origin xyz="0 0 ${altoL/2}" rpy="0 0 0"/>
+      <mass value="${mass}"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </xacro:macro>
 
+  <xacro:include filename="$(find SimpleArm)/urdf/SimpleArm.gazebo" />
+
+   <!-- Import Rviz colors -->
+<xacro:include filename="$(find SimpleArm)/urdf/materials.xacro" />
 
   <link name="link0">
     <visual>
@@ -38,13 +42,16 @@
         <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
       <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
+      <material name="orange"/>
     </visual>
-    <collission>
+
+    <collision>
       <geometry>
          <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
       <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
-    </collission>
+    </collision>
+
     <xacro:default_inertial mass="${masa}" altoL="${largo}"/>
   </link>
 
@@ -54,13 +61,15 @@
         <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
       <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
+      <material name="white"/>
     </visual>
-    <colission>
+
+    <collision>
       <geometry>
          <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
       <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
-    </colission>
+    </collision>
     <xacro:default_inertial mass="${masa}" altoL="${largo}"/>
   </link>
 
@@ -70,13 +79,15 @@
         <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
       <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
+      <material name="orange"/>
     </visual>
-    <colission>
+
+    <collision>
       <geometry>
          <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
       <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
-    </colission>
+    </collision>
     <xacro:default_inertial mass="${masa}" altoL="${largo}"/>
   </link>
 
@@ -86,13 +97,15 @@
         <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
       <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
+      <material name="white"/>
     </visual>
-    <colission>
+
+    <collision>
       <geometry>
          <cylinder radius="${ancho}" length="${largo}"/>
       </geometry>
       <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
-    </colission>
+    </collision>
     <xacro:default_inertial mass="${masa}" altoL="${largo}"/>
   </link>
  
