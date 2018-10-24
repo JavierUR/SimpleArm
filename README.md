@@ -10,4 +10,4 @@ Masa de links = 2 kg
 Altura de base = 0.1 mt
 
 ## Imagenes del brazo.
-<img src="doc/v1_0.png" width="550" height="450" />
+<img src="doc/v1_0.png" width="1211" height="791" />
