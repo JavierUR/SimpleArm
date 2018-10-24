@@ -1,9 +1,11 @@
 <?xml version="1.0"?>
 <robot name="SimpleArm"  xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <link name="world"/>
   <xacro:property name="altura_base" value="0.1"/>
   <xacro:property name="largo" value="0.5"/>
   <xacro:property name="ancho" value="0.1"/>
-  <xacro:property name="masa" value="2.0"/>
+  <xacro:property name="masa" value="5"/>
+  <xacro:property name="delta" value="0.1"/>
 
   <xacro:macro name="default_inertial" params="mass altoL">
     <inertial>
@@ -33,7 +35,7 @@
       </geometry>
     </collision>
 
-   <xacro:default_inertial mass="1000000" altoL="${altura_base}"/>
+   <xacro:default_inertial mass="1000" altoL="${altura_base}"/>
   </link>
 
   <link name="link1">
@@ -109,6 +111,28 @@
     <xacro:default_inertial mass="${masa}" altoL="${largo}"/>
   </link>
  
+  <link name="link5">
+    <visual>
+      <geometry>
+        <sphere radius="${ancho}"/>
+      </geometry>
+      <origin xyz="0 0 ${ancho}" rpy="0 0 0" />
+      <material name="orange"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <sphere radius="${ancho}"/>
+      </geometry>
+      <origin xyz="0 0 ${ancho}" rpy="0 0 0" />
+    </collision>
+    <xacro:default_inertial mass="${masa/20}" altoL="${ancho}"/>
+  </link>
+
+  <joint name="joint0" type="fixed">
+    <parent link="world"/>
+    <child link="link0"/>
+  </joint>
 
   <joint name="joint1" type="continuous">
     <parent link="link0"/>
@@ -121,7 +145,7 @@
   <joint name="joint2" type="continuous">
     <parent link="link1"/>
     <child link="link2"/>
-    <origin xyz="0 0 ${largo}" rpy="0 0 0" />
+    <origin xyz="0 0 ${largo+delta}" rpy="0 0 0" />
     <axis xyz="0 1 0"/>
     <dynamics damping="0.6"/>
   </joint>
@@ -129,7 +153,7 @@
   <joint name="joint3" type="continuous">
     <parent link="link2"/>
     <child link="link3"/>
-    <origin xyz="0 0 ${largo}" rpy="0 0 0" />
+    <origin xyz="0 0 ${largo+delta}" rpy="0 0 0" />
     <axis xyz="0 1 0"/>
     <dynamics damping="0.6"/>
   </joint>
@@ -137,10 +161,16 @@
   <joint name="joint4" type="continuous">
     <parent link="link3"/>
     <child link="link4"/>
-    <origin xyz="0 0 ${largo}" rpy="0 0 0" />
+    <origin xyz="0 0 ${largo+delta}" rpy="0 0 0" />
     <axis xyz="0 1 0"/>
     <dynamics damping="0.6"/>
   </joint>
+
+  <joint name="joint5" type="fixed">
+    <parent link="link4"/>
+    <child link="link5"/>
+    <origin xyz="0 0 ${largo}" rpy="0 0 0" />
+    </joint>
 
   <!-- Transmission -->
   <transmission name="tran1">
