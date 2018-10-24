@@ -2,5 +2,12 @@
 Repo del modelo de brazo
 
 
+# V 1.0
+## Parametros del brazo.
+Largo Links = 0.5 mt
+Ancho de links = 0.1 mt
+Masa de links = 2 mt
+Altura de base = 0.1 mt
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=A=12" target="_blank"><img src="https://latex.codecogs.com/gif.latex?A=12" title="A=12" /></a>
+## Imagenes del brazo.
+<img src="doc/v1_0.png" width="900" height="450" />

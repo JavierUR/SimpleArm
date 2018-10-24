@@ -33,7 +33,7 @@
       </geometry>
     </collision>
 
-   <xacro:default_inertial mass="1000" altoL="${altura_base}"/>
+   <xacro:default_inertial mass="1000000" altoL="${altura_base}"/>
   </link>
 
   <link name="link1">
