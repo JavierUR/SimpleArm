@@ -7,11 +7,26 @@
   <xacro:property name="masa" value="5"/>
   <xacro:property name="delta" value="0.1"/>
 
-  <xacro:macro name="default_inertial" params="mass altoL">
+  <xacro:macro name="cuboid_inertia_def" params="x y z mass">
     <inertial>
-      <origin xyz="0 0 ${altoL/2}" rpy="0 0 0"/>
+      <origin xyz="0 0 ${z/2}" rpy="0 0 0"/>
       <mass value="${mass}"/>
-      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      <inertia 
+        iyy="${mass*(z*z+x*x)/12.0}"
+        ixx="${mass*(y*y+z*z)/12.0}"
+        izz="${mass*(x*x+y*y)/12.0}"
+        ixy="0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="default_inertial" params="mass length radius">
+    <inertial>
+      <origin xyz="0 0 ${length/2}" rpy="0 0 0"/>
+      <mass value="${mass}"/>
+          <inertia ixx="${mass*(3.0*radius*radius+length*length)/12.0}"
+             iyy="${mass*(3.0*radius*radius+length*length)/12.0}"
+             izz="${mass*radius*radius/2.0}"
+             ixy="0.0" iyz="0.0" ixz="0.0"/>
     </inertial>
   </xacro:macro>
 
@@ -35,7 +50,7 @@
       </geometry>
     </collision>
 
-   <xacro:default_inertial mass="1000" altoL="${altura_base}"/>
+   <xacro:cuboid_inertia_def mass="1000" z="${altura_base}" x="1" y="1"/>
   </link>
 
   <link name="link1">
@@ -54,7 +69,7 @@
       <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
     </collision>
 
-    <xacro:default_inertial mass="${masa}" altoL="${largo}"/>
+    <xacro:default_inertial mass="${masa}" length="${largo}" radius="${ancho}"/>
   </link>
 
   <link name="link2">
@@ -72,7 +87,7 @@
       </geometry>
       <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
     </collision>
-    <xacro:default_inertial mass="${masa}" altoL="${largo}"/>
+    <xacro:default_inertial mass="${masa}" length="${largo}" radius="${ancho}"/>
   </link>
 
   <link name="link3">
@@ -90,7 +105,7 @@
       </geometry>
       <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
     </collision>
-    <xacro:default_inertial mass="${masa}" altoL="${largo}"/>
+    <xacro:default_inertial mass="${masa}" length="${largo}" radius="${ancho}"/>
   </link>
 
   <link name="link4">
@@ -108,7 +123,7 @@
       </geometry>
       <origin xyz="0 0 ${largo/2}" rpy="0 0 0" />
     </collision>
-    <xacro:default_inertial mass="${masa}" altoL="${largo}"/>
+    <xacro:default_inertial mass="${masa}" length="${largo}" radius="${ancho}"/>
   </link>
  
   <link name="link5">
@@ -117,7 +132,7 @@
         <sphere radius="${ancho}"/>
       </geometry>
       <origin xyz="0 0 ${ancho}" rpy="0 0 0" />
-      <material name="orange"/>
+      <material name="brown"/>
     </visual>
 
     <collision>
@@ -126,7 +141,7 @@
       </geometry>
       <origin xyz="0 0 ${ancho}" rpy="0 0 0" />
     </collision>
-    <xacro:default_inertial mass="${masa/20}" altoL="${ancho}"/>
+    <xacro:default_inertial mass="${masa/20}" length="${ancho}" radius="${ancho}"/>
   </link>
 
   <joint name="joint0" type="fixed">
