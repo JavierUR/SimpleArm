@@ -6,6 +6,7 @@
   <xacro:property name="ancho" value="0.1"/>
   <xacro:property name="masa" value="5"/>
   <xacro:property name="delta" value="0.1"/>
+  <xacro:property name="pi" value="3.14"/>
 
   <xacro:macro name="cuboid_inertia_def" params="x y z mass">
     <inertial>
@@ -155,30 +156,34 @@
     <origin xyz="0 0 ${altura_base}" rpy="0 0 0" />
     <axis xyz="0 0 1"/>
     <dynamics damping="0.6"/>
+     <limit effort="200" velocity="20" />
   </joint>
 
-  <joint name="joint2" type="continuous">
+  <joint name="joint2" type="revolute">
     <parent link="link1"/>
     <child link="link2"/>
     <origin xyz="0 0 ${largo+delta}" rpy="0 0 0" />
     <axis xyz="0 1 0"/>
     <dynamics damping="0.6"/>
+    <limit effort="200" velocity="20" lower="${-pi/2}" upper="${pi/2}" />
   </joint>
 
-  <joint name="joint3" type="continuous">
+  <joint name="joint3" type="revolute">
     <parent link="link2"/>
     <child link="link3"/>
     <origin xyz="0 0 ${largo+delta}" rpy="0 0 0" />
     <axis xyz="0 1 0"/>
     <dynamics damping="0.6"/>
+    <limit effort="90" velocity="20" lower="${-pi/2}" upper="${pi/2}" />
   </joint>
 
-  <joint name="joint4" type="continuous">
+  <joint name="joint4" type="revolute">
     <parent link="link3"/>
     <child link="link4"/>
     <origin xyz="0 0 ${largo+delta}" rpy="0 0 0" />
     <axis xyz="0 1 0"/>
     <dynamics damping="0.6"/>
+    <limit effort="40" velocity="20" lower="${-pi/2}" upper="${pi/2}" />
   </joint>
 
   <joint name="joint5" type="fixed">
