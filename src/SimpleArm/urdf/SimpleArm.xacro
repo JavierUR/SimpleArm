@@ -132,7 +132,7 @@
       <geometry>
         <sphere radius="${ancho}"/>
       </geometry>
-      <origin xyz="0 0 ${ancho}" rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <material name="brown"/>
     </visual>
 
@@ -140,7 +140,7 @@
       <geometry>
         <sphere radius="${ancho}"/>
       </geometry>
-      <origin xyz="0 0 ${ancho}" rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
     </collision>
     <xacro:default_inertial mass="${masa/20}" length="${ancho}" radius="${ancho}"/>
   </link>
@@ -189,7 +189,7 @@
   <joint name="joint5" type="fixed">
     <parent link="link4"/>
     <child link="link5"/>
-    <origin xyz="0 0 ${largo}" rpy="0 0 0" />
+    <origin xyz="0 0 ${largo+ancho}" rpy="0 0 0" />
     </joint>
 
   <!-- Transmission -->
