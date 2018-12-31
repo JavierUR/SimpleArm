@@ -40,7 +40,7 @@
     <visual>
       <origin xyz="0 0 ${altura_base/2}" rpy="0 0 0"/>
       <geometry>
-        <box size="1 1 ${altura_base}"/>
+        <box size="0.2 0.2 ${altura_base}"/>
       </geometry>
     </visual>
 
